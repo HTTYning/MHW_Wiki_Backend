@@ -1,0 +1,27 @@
+{
+  "name": "mhw_wiki_backend",
+  "version": "1.0.0",
+  "description": "怪物猎人:世界维基后端",
+  "main": "main",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/HTTYning/MHW_Wiki_Backend.git"
+  },
+  "author": "murasame",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HTTYning/MHW_Wiki_Backend/issues"
+  },
+  "homepage": "https://github.com/HTTYning/MHW_Wiki_Backend#readme",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "silly-datetime": "^0.1.2"
+  }
+}
