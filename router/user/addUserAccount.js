@@ -1,15 +1,16 @@
 const expressModule = require('express');
 const router = expressModule.Router();
 const db = require('../connectPool')
-
+const sd = require('silly-datetime');
 
 router.post("/user/createAccount",(req,res)=>{
-    let userId = req.body.userId;
     let userName = req.body.userName;
-    let userPassword = req.body.userPassword;
-    let userEmail = req.body.userEmail;
-    let sqlCreateAccount = `INSERT INTO user_info (user_name, user_password, user_email,create_time) VALUES (?, ?, ?, ?)`;
-    db.query(sqlCreateAccount,[userName,userPassword,userEmail],(err,result)=>{
+    let userPhone = req.body.phone;
+    let userPassword = req.body.password;
+    let userEmail = req.body.email;
+    let timeStemp = getCurrentTimeStampUseForDB();
+    let sqlCreateAccount = `INSERT INTO user_info (user_name,user_phone,user_email,user_password ,create_time) VALUES (?, ?, ?, ?, ?)`;
+    db.query(sqlCreateAccount,[userName,userPhone,userEmail,userPassword,timeStemp],(err,result)=>{
         if(err){
             res.send({
                 code:405,
@@ -24,6 +25,15 @@ router.post("/user/createAccount",(req,res)=>{
             })
         }
     });
-})
-
+});
+function getCurrentTimeStampUseForDB() {
+    var year = sd.format(new Date(), 'YYYY');
+    var month = sd.format(new Date(), 'MM');
+    var day = sd.format(new Date(), 'DD');
+    var hour = sd.format(new Date(), 'HH');
+    var min = sd.format(new Date(), 'mm');
+    var sen = sd.format(new Date(), 'ss');
+    let timeStr = `${year}-${month}-${day} ${hour}:${min}:${sen}`;
+    return timeStr;
+}
 module.exports = router;
